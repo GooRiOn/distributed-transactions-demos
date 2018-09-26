@@ -2,7 +2,11 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using API.Coordinators;
+using Autofac;
+using System.Reflection;
+using Autofac.Extensions.DependencyInjection;
+using DShop.Common.RabbitMq;
+using System;
 
 namespace API
 {
@@ -14,12 +18,21 @@ namespace API
         }
 
         public IConfiguration Configuration { get; }
+        public IContainer Container { get; private set; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddTransient<IVacationBookingCoordinator, VacationBookingCoordinator>();
+
+            var builder = new ContainerBuilder();
+            builder.RegisterAssemblyTypes(Assembly.GetEntryAssembly())
+                    .AsImplementedInterfaces();
+            builder.Populate(services);
+            builder.AddRabbitMq();
+
+            Container = builder.Build();
+
+            return new AutofacServiceProvider(Container);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,6 +44,7 @@ namespace API
             }
 
             app.UseMvc();
+            app.UseRabbitMq();
         }
     }
 }

@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using API.Coordinators;
+using DShop.Common.RabbitMq;
+using Contracts.Commands;
 
 namespace API.Controllers
 {
@@ -11,13 +13,18 @@ namespace API.Controllers
         public Guid UserId => Guid.NewGuid();
 
         private readonly IVacationBookingCoordinator _coordinator;
+        private readonly IBusPublisher _busPublisher;
 
-        public BookingController(IVacationBookingCoordinator coordinator)
-            => _coordinator = coordinator;
+        public BookingController(IVacationBookingCoordinator coordinator, IBusPublisher busPublisher)
+            => (_coordinator, _busPublisher) = (coordinator, busPublisher);
 
-        [HttpPost("")]
-        public Task<bool> BooksAsync([FromBody] Model model)
+        [HttpPost("2PC")]
+        public Task<bool> Book2PCAsync([FromBody] Model model)
             => _coordinator.BookAsync(model.From, model.To, UserId);
+
+        [HttpPost("Chronology")]
+        public Task BooksAsync([FromBody] Model model)
+            => _busPublisher.SendAsync(new BookFlight(model.From, model.To, UserId), CorrelationContext.Empty);
 
         public class Model
         {

@@ -3,6 +3,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using HotelsService.Services;
+using System.Reflection;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using DShop.Common.RabbitMq;
+using Contracts.Events;
+using System;
 
 namespace HotelsService
 {
@@ -14,12 +20,21 @@ namespace HotelsService
         }
 
         public IConfiguration Configuration { get; }
+        public IContainer Container { get; private set; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddSingleton<IHotelBookingService, HotelBookingService>();
+
+            var builder = new ContainerBuilder();
+            builder.RegisterAssemblyTypes(Assembly.GetEntryAssembly())
+                    .AsImplementedInterfaces().SingleInstance();
+            builder.Populate(services);
+            builder.AddRabbitMq();
+
+            Container = builder.Build();
+
+            return new AutofacServiceProvider(Container);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,6 +46,8 @@ namespace HotelsService
             }
 
             app.UseMvc();
+            app.UseRabbitMq()
+                .SubscribeEvent<FlightBooked>();
         }
     }
 }

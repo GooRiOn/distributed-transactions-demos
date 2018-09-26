@@ -27,9 +27,9 @@ namespace API.Coordinators
 
             var commitRequestTasks = new Task<bool>[3]
             {
-                _carsService.CheckAvailablityAsync(from, to, transactionId),
-                _hotelsService.CheckAvailablityAsync(from, to, transactionId),
                 _flightsService.CheckAvailablityAsync(from, to, transactionId),
+                _hotelsService.CheckAvailablityAsync(from, to, transactionId),
+                _carsService.CheckAvailablityAsync(from, to, transactionId),
             };
 
             await Task.WhenAll(commitRequestTasks);
@@ -52,9 +52,9 @@ namespace API.Coordinators
 
             var commitRequests = new Task[3]
             {
-                _carsService.RentAsync(model),
-                _hotelsService.BookAsync(model),
                 _flightsService.BookAsync(model),
+                _hotelsService.BookAsync(model),
+                _carsService.RentAsync(model),
             };
 
             await Task.WhenAll(commitRequests);
@@ -65,9 +65,9 @@ namespace API.Coordinators
         {
             var unlockTasks = new Task[3]
             {
-                _carsService.UnlockAsync(transactionId),
-                _hotelsService.UnlockAsync(transactionId),
                 _flightsService.UnlockAsync(transactionId),
+                _hotelsService.UnlockAsync(transactionId),
+                _carsService.UnlockAsync(transactionId),
             };
 
             await Task.WhenAll(unlockTasks);

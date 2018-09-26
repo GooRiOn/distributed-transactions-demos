@@ -1,8 +1,13 @@
-﻿using CarsService.Services;
+﻿using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Contracts.Events;
+using DShop.Common.RabbitMq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Reflection;
 
 namespace CarsService
 {
@@ -14,12 +19,21 @@ namespace CarsService
         }
 
         public IConfiguration Configuration { get; }
+        public IContainer Container { get; private set; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddSingleton<ICarRentalsService, CarRentalsService>();
+
+            var builder = new ContainerBuilder();
+            builder.RegisterAssemblyTypes(Assembly.GetEntryAssembly())
+                    .AsImplementedInterfaces().SingleInstance();
+            builder.Populate(services);
+            builder.AddRabbitMq();
+
+            Container = builder.Build();
+
+            return new AutofacServiceProvider(Container);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,6 +45,8 @@ namespace CarsService
             }
 
             app.UseMvc();
+            app.UseRabbitMq()
+                .SubscribeEvent<HotelBooked>();
         }
     }
 }

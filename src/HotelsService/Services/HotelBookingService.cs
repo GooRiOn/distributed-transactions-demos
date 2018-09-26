@@ -22,7 +22,7 @@ namespace HotelsService.Services
 
         public async Task<bool> CheckAvailabilityAsync(DateTime from, DateTime to, Guid transactionId)
         {
-            var availableHotel = _repository.FirstOrDefault(h => h.IsAvailable);
+            var availableHotel = _repository.FirstOrDefault(h => h.IsAvailable && !h.IsLocked);
 
             if (availableHotel is null)
             {

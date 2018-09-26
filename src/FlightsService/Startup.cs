@@ -2,7 +2,12 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using FlightsService.Services;
+using System.Reflection;
+using Autofac;
+using DShop.Common.RabbitMq;
+using Autofac.Extensions.DependencyInjection;
+using Contracts.Commands;
+using System;
 
 namespace FlightsService
 {
@@ -14,12 +19,21 @@ namespace FlightsService
         }
 
         public IConfiguration Configuration { get; }
+        public IContainer Container { get; private set; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddSingleton<IFlightsBookingService, FlightBookingService>();
+
+            var builder = new ContainerBuilder();
+            builder.RegisterAssemblyTypes(Assembly.GetEntryAssembly())
+                    .AsImplementedInterfaces().SingleInstance();
+            builder.Populate(services);
+            builder.AddRabbitMq();
+
+            Container = builder.Build();
+
+            return new AutofacServiceProvider(Container);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,6 +45,8 @@ namespace FlightsService
             }
 
             app.UseMvc();
+            app.UseRabbitMq()
+                .SubscribeCommand<BookFlight>();
         }
     }
 }

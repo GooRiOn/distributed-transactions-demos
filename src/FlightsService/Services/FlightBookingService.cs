@@ -22,7 +22,11 @@ namespace FlightsService.Services
 
         public async Task<bool> CheckAvailabilityAsync(DateTime from, DateTime to, Guid transactionId)
         {
-            var availableFlight = _repository.FirstOrDefault(f => f.IsAvailable && f.Date >= from && f.Date <= to);
+            var availableFlight = _repository.FirstOrDefault(f => 
+                  !f.IsLocked 
+                && f.IsAvailable 
+                && f.Date >= from 
+                && f.Date <= to);
 
             if (availableFlight is null)
             {
