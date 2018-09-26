@@ -1,0 +1,11 @@
+C:\Repositories\DistributedTransactions.Demos\src\HotelsService\bin\Debug\netcoreapp2.0\HotelsService.deps.json
+C:\Repositories\DistributedTransactions.Demos\src\HotelsService\bin\Debug\netcoreapp2.0\HotelsService.runtimeconfig.json
+C:\Repositories\DistributedTransactions.Demos\src\HotelsService\bin\Debug\netcoreapp2.0\HotelsService.runtimeconfig.dev.json
+C:\Repositories\DistributedTransactions.Demos\src\HotelsService\bin\Debug\netcoreapp2.0\HotelsService.dll
+C:\Repositories\DistributedTransactions.Demos\src\HotelsService\bin\Debug\netcoreapp2.0\HotelsService.pdb
+C:\Repositories\DistributedTransactions.Demos\src\HotelsService\obj\Debug\netcoreapp2.0\HotelsService.csprojResolveAssemblyReference.cache
+C:\Repositories\DistributedTransactions.Demos\src\HotelsService\obj\Debug\netcoreapp2.0\HotelsService.csproj.CoreCompileInputs.cache
+C:\Repositories\DistributedTransactions.Demos\src\HotelsService\obj\Debug\netcoreapp2.0\HotelsService.AssemblyInfoInputs.cache
+C:\Repositories\DistributedTransactions.Demos\src\HotelsService\obj\Debug\netcoreapp2.0\HotelsService.AssemblyInfo.cs
+C:\Repositories\DistributedTransactions.Demos\src\HotelsService\obj\Debug\netcoreapp2.0\HotelsService.dll
+C:\Repositories\DistributedTransactions.Demos\src\HotelsService\obj\Debug\netcoreapp2.0\HotelsService.pdb

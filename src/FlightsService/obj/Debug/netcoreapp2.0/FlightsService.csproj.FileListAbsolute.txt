@@ -1,0 +1,11 @@
+C:\Repositories\DistributedTransactions.Demos\src\FlightsService\bin\Debug\netcoreapp2.0\FlightsService.deps.json
+C:\Repositories\DistributedTransactions.Demos\src\FlightsService\bin\Debug\netcoreapp2.0\FlightsService.runtimeconfig.json
+C:\Repositories\DistributedTransactions.Demos\src\FlightsService\bin\Debug\netcoreapp2.0\FlightsService.runtimeconfig.dev.json
+C:\Repositories\DistributedTransactions.Demos\src\FlightsService\bin\Debug\netcoreapp2.0\FlightsService.dll
+C:\Repositories\DistributedTransactions.Demos\src\FlightsService\bin\Debug\netcoreapp2.0\FlightsService.pdb
+C:\Repositories\DistributedTransactions.Demos\src\FlightsService\obj\Debug\netcoreapp2.0\FlightsService.csprojResolveAssemblyReference.cache
+C:\Repositories\DistributedTransactions.Demos\src\FlightsService\obj\Debug\netcoreapp2.0\FlightsService.csproj.CoreCompileInputs.cache
+C:\Repositories\DistributedTransactions.Demos\src\FlightsService\obj\Debug\netcoreapp2.0\FlightsService.AssemblyInfoInputs.cache
+C:\Repositories\DistributedTransactions.Demos\src\FlightsService\obj\Debug\netcoreapp2.0\FlightsService.AssemblyInfo.cs
+C:\Repositories\DistributedTransactions.Demos\src\FlightsService\obj\Debug\netcoreapp2.0\FlightsService.dll
+C:\Repositories\DistributedTransactions.Demos\src\FlightsService\obj\Debug\netcoreapp2.0\FlightsService.pdb

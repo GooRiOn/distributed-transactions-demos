@@ -1,0 +1,11 @@
+C:\Repositories\DistributedTransactions.Demos\src\CarRentalsService\bin\Debug\netcoreapp2.0\CarRentalsService.deps.json
+C:\Repositories\DistributedTransactions.Demos\src\CarRentalsService\bin\Debug\netcoreapp2.0\CarRentalsService.runtimeconfig.json
+C:\Repositories\DistributedTransactions.Demos\src\CarRentalsService\bin\Debug\netcoreapp2.0\CarRentalsService.runtimeconfig.dev.json
+C:\Repositories\DistributedTransactions.Demos\src\CarRentalsService\bin\Debug\netcoreapp2.0\CarRentalsService.dll
+C:\Repositories\DistributedTransactions.Demos\src\CarRentalsService\bin\Debug\netcoreapp2.0\CarRentalsService.pdb
+C:\Repositories\DistributedTransactions.Demos\src\CarRentalsService\obj\Debug\netcoreapp2.0\CarRentalsService.csprojResolveAssemblyReference.cache
+C:\Repositories\DistributedTransactions.Demos\src\CarRentalsService\obj\Debug\netcoreapp2.0\CarRentalsService.csproj.CoreCompileInputs.cache
+C:\Repositories\DistributedTransactions.Demos\src\CarRentalsService\obj\Debug\netcoreapp2.0\CarRentalsService.AssemblyInfoInputs.cache
+C:\Repositories\DistributedTransactions.Demos\src\CarRentalsService\obj\Debug\netcoreapp2.0\CarRentalsService.AssemblyInfo.cs
+C:\Repositories\DistributedTransactions.Demos\src\CarRentalsService\obj\Debug\netcoreapp2.0\CarRentalsService.dll
+C:\Repositories\DistributedTransactions.Demos\src\CarRentalsService\obj\Debug\netcoreapp2.0\CarRentalsService.pdb
