@@ -22,7 +22,7 @@ namespace API.Controllers
         public Task<bool> Book2PCAsync([FromBody] Model model)
             => _coordinator.BookAsync(model.From, model.To, UserId);
 
-        [HttpPost("Chronology")]
+        [HttpPost("Choreography")]
         public Task BooksAsync([FromBody] Model model)
             => _busPublisher.SendAsync(new BookFlight(model.From, model.To, UserId), CorrelationContext.Empty);
 
