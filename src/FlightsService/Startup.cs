@@ -8,6 +8,7 @@ using DShop.Common.RabbitMq;
 using Autofac.Extensions.DependencyInjection;
 using Contracts.Commands;
 using System;
+using Contracts.Events;
 
 namespace FlightsService
 {
@@ -46,7 +47,8 @@ namespace FlightsService
 
             app.UseMvc();
             app.UseRabbitMq()
-                .SubscribeCommand<BookFlight>();
+                .SubscribeCommand<BookFlight>()
+                .SubscribeEvent<HotelBookingRejected>();
         }
     }
 }

@@ -33,7 +33,7 @@ namespace HotelsService.Handlers
         public async Task HandleAsync(FlightBooked @event, ICorrelationContext context)
             => await _handler
                 .Handle(async () =>
-                {
+                {                    
                     var availableHotel = _repository.FirstOrDefault(h => h.IsAvailable && !h.IsLocked);
 
                     if (availableHotel is null)
@@ -47,6 +47,10 @@ namespace HotelsService.Handlers
                 .OnSuccess(async () =>
                 {
                     await _busPublisher.PublishAsync(new HotelBooked(_bookedHotel.Id, @event.From, @event.To, @event.UserId), context);
+                })
+                .OnError(async (ex) => 
+                {
+                    await _busPublisher.PublishAsync(new HotelBookingRejected(@event.From, @event.To, @event.UserId), context);
                 })
                 .ExecuteAsync();
     }
